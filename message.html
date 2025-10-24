@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message for You</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Ensure emojis render consistently across all platforms */
+        .emoji {
+            font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "Android Emoji", "EmojiSymbols", sans-serif;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #90caf9 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            box-shadow: 0 25px 70px rgba(100, 181, 246, 0.25);
+            border: 1px solid rgba(144, 202, 249, 0.3);
+            padding: 70px 50px;
+            max-width: 650px;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .emoji {
+            font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "Android Emoji", "EmojiSymbols", sans-serif;
+            font-size: 90px;
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 5px 15px rgba(100, 181, 246, 0.3));
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            color: #1976d2;
+            font-size: 48px;
+            margin-bottom: 35px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: lowercase;
+        }
+
+        h1::first-letter {
+            font-size: 60px;
+            font-weight: 600;
+        }
+
+        .message {
+            font-family: 'Cormorant Garamond', serif;
+            color: #42a5f5;
+            font-size: 26px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 400;
+            font-style: italic;
+            padding: 0 20px;
+        }
+
+        .refresh-hint {
+            font-family: 'Montserrat', sans-serif;
+            color: #64b5f6;
+            font-size: 13px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-top: 25px;
+            text-transform: lowercase;
+        }
+        
+        .refresh-hint .emoji-inline {
+            font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "Android Emoji", "EmojiSymbols", sans-serif;
+        }
+
+        .refresh-btn {
+            background: linear-gradient(135deg, #64b5f6 0%, #42a5f5 100%);
+            color: white;
+            border: none;
+            padding: 16px 45px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: lowercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 25px;
+            box-shadow: 0 10px 30px rgba(100, 181, 246, 0.3);
+        }
+
+        .refresh-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(100, 181, 246, 0.4);
+            background: linear-gradient(135deg, #42a5f5 0%, #1976d2 100%);
+        }
+
+        .refresh-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .decorative-line {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #90caf9, transparent);
+            margin: 30px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="emoji" id="emoji">💌</div>
+        <h1>a message for my aieleen</h1>
+        <div class="decorative-line"></div>
+        <div class="message" id="message"></div>
+        <div class="decorative-line"></div>
+        <button class="refresh-btn" onclick="location.reload()">discover another</button>
+        <div class="refresh-hint"><span class="emoji-inline">✧</span> each visit reveals something new <span class="emoji-inline">✧</span></div>
+    </div>
+
+    <script>
+        // Array of messages - customize these to your liking!
+        const messages = [
+            "Happy monthsary, my little dumpling — you're my favorite orbit in this whole galaxy.",
+            "You're the brightest star in my universe, and I'll never stop stargazing at you.",
+            "My heart does a little moon-bounce every time you smile.",
+            "You're my cosmic comfort — soft as a dumpling, warm as starlight.",
+            "Even the stars envy the sparkle you bring into my sky.",
+            "You and I? We're a love story written in constellations.",
+            "The universe must've conspired to wrap a galaxy inside one cute dumpling — you.",
+            "You make my world spin in the sweetest orbit, month after month.",
+            "Our love is like gravity — gentle, inevitable, and always pulling me back to you.",
+            "You're my favorite celestial snack — my dumpling from the stars.",
+            "Here's to another month of floating through the cosmos hand in hand.",
+            "You're my moonlight in human form — glowing, soft, and endlessly lovely.",
+            "Every month with you feels like discovering a new planet made of pure joy.",
+            "If I could, I'd lasso a star just to say, 'You're my forever dumpling.'",
+            "We're just two hearts in orbit — and I never want our gravity to fade."
+        ];
+
+        const emojis = ["🥟", "🌙", "⭐", "✨", "💫", "🌟", "🪐", "🌌", "💙", "🌠"];
+
+        // Get a random message
+        function getRandomMessage() {
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            return messages[randomIndex];
+        }
+
+        // Get a random emoji
+        function getRandomEmoji() {
+            const randomIndex = Math.floor(Math.random() * emojis.length);
+            return emojis[randomIndex];
+        }
+
+        // Display the message
+        document.getElementById('message').textContent = getRandomMessage();
+        document.getElementById('emoji').textContent = getRandomEmoji();
+    </script>
+</body>
+</html>
