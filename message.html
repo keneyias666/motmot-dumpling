@@ -63,6 +63,23 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
+        .gif-container {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(100, 181, 246, 0.3);
+            border: 3px solid rgba(144, 202, 249, 0.4);
+        }
+
+        .gif-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-15px); }
@@ -149,8 +166,11 @@
 </head>
 <body>
     <div class="container">
+        <div class="gif-container">
+            <img id="gif" src="" alt="Love GIF">
+        </div>
         <div class="emoji" id="emoji">💌</div>
-        <h1>a message for my aieleen</h1>
+        <h1>a message for you</h1>
         <div class="decorative-line"></div>
         <div class="message" id="message"></div>
         <div class="decorative-line"></div>
@@ -169,16 +189,30 @@
             "You and I? We're a love story written in constellations.",
             "The universe must've conspired to wrap a galaxy inside one cute dumpling — you.",
             "You make my world spin in the sweetest orbit, month after month.",
-            "Our love is like gravity — serene, inevitable, and always pulling me back to you.",
+            "Our love is like gravity — gentle, inevitable, and always pulling me back to you.",
             "You're my favorite celestial snack — my dumpling from the stars.",
-            "Here's to a month of floating through the cosmos hand in hand.",
+            "Here's to another month of floating through the cosmos hand in hand.",
             "You're my moonlight in human form — glowing, soft, and endlessly lovely.",
-            "First month with you feels like discovering a new planet made of pure joy.",
+            "Every month with you feels like discovering a new planet made of pure joy.",
             "If I could, I'd lasso a star just to say, 'You're my forever dumpling.'",
-            "We're just two hearts in orbit — and I never want our gravity and law of attraction to fade."
+            "We're just two hearts in orbit — and I never want our gravity to fade."
         ];
 
-        const emojis = ["🥟", "🌙", "⭐", "✨", "💫", "🌟", "🪐", "🌌", "💙", "🌠"];
+        const emojis = ["🥟", "🌙", "⭐", "✨", "💫", "🌟", "🪐", "🌌", "🩵", "🌠"];
+
+        // Array of romantic/cosmic GIFs from Giphy
+        const gifs = [
+            "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDA2ZW92ajJzczgwa2N4MWkwZ3h1bDhxenB6N3o3MGtucmhpbjY0YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/y52k9qaauF4lgk9wjh/giphy.gif", // Hearts floating
+            "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMDJ2NWRkN2xkNHdzZzYwc3l6OG41ZWdwZWVhcDMwMHV6bGozNTFsaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/gAuRTx50WsS2AOlup6/giphy.gif", // Love hearts
+            "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHlrNGwxcG51Y3RmbnF6MGxvdGZwMjAyMDJjM3VuYms4ajRsbmtqOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/rKoHVjF3PQlSqtpqdp/giphy.gif", // Cute hearts
+            "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdjFsdDVjanF0dDhyYjB0cHNma2FxYTcwd2g2eGVuMHo3OXQ5eWxzYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/c7nQ7v1sJiWhiq204Q/giphy.gif", // Love animation
+            "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdjR0eXc2a3c3dTJ1NW9oamVyM2tlODg3Y3l5dG52cGlhdWx4ODNjOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qszpmYQ63Ya4lfgCrm/giphy.gif", // Heart burst
+            "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnM3cGlxZjE1emJ3bGEwODYyNmV4MjU4YmZhdXN6bjN6cTR6anhtdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bWlAX1nD1StjO/giphy.gif", // Sparkly hearts
+            "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnk2enJ2dDUya2RuZDFhZGFjcWZrbTc3amRiYTZ1NmdvZTRoZXdheCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ymkLJAxVz2la/giphy.gif", // Romantic hearts
+            "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmE2eHZodnp1c3Nha3p5cGIxNW95bGk1bGZrenRhemJoMGh6aXp0eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tYqh4MV5215mtqNueh/giphy.gif", // Love sparkles
+            "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWQzNXduN3ZhNTVueDVhMThrZmdzMXhmamRoaWl3eWI1eXJkZ3E3YiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bANsiL0SX8TSjJ7aZh/giphy.gif", // Cute love
+            "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExODltdDQ1dzM0YTN5aHZwcHN0OXpkY2FpdXlhaHBmNmVxYXl4eTNpcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/wL23aMJn2AhTa/giphy.gif"  // Heart animation
+        ];
 
         // Get a random message
         function getRandomMessage() {
@@ -192,10 +226,16 @@
             return emojis[randomIndex];
         }
 
-        // Display the message
+        // Get a random GIF
+        function getRandomGif() {
+            const randomIndex = Math.floor(Math.random() * gifs.length);
+            return gifs[randomIndex];
+        }
+
+        // Display the message, emoji, and GIF
         document.getElementById('message').textContent = getRandomMessage();
         document.getElementById('emoji').textContent = getRandomEmoji();
+        document.getElementById('gif').src = getRandomGif();
     </script>
 </body>
-
 </html>
